@@ -1,0 +1,98 @@
+---
+title: "Data Envelopment Analysis"
+output: html_document
+---
+
+
+```{r}
+library(Benchmarking)
+```
+
+
+```{r}
+input <- matrix(c(150,400,320,520,350,320,0.2,0.7,1.2,2.0,1.2,0.7),ncol = 2)
+output <- matrix(c(14000,14000,42000,28000,19000,14000,3500,21000,10500,42000,25000,15000),ncol = 2)
+colnames(input) <- c("Staff hrs per day","Supplies per day")
+colnames(output) <- c("Reimbursed Patient-Days","Privately Paid Patient-Days")
+input
+output
+```
+
+
+```{r}
+el <- dea(input,output,RTS = "crs")
+el
+peers(el)
+lambda(el)
+```
+
+
+```{r}
+dea.plot.frontier(input,output,RTS = "crs")
+```
+
+
+```{r}
+em <- dea(input,output,RTS = "vrs")
+em
+peers(em)
+lambda(em)
+```
+
+
+```{r}
+dea.plot.frontier(input,output,RTS = "vrs")
+```
+
+
+```{r}
+en <- dea(input,output,RTS = "irs")
+en
+peers(en)
+lambda(en)
+```
+
+
+```{r}
+dea.plot.frontier(input,output,RTS = "irs")
+```
+
+
+```{r}
+eo <- dea(input,output,RTS = "drs")
+eo
+peers(eo)
+lambda(eo)
+```
+
+
+```{r}
+dea.plot.frontier(input,output,RTS = "drs")
+```
+
+
+```{r}
+ep <- dea(input,output,RTS = "fdh+")
+ep
+peers(ep)
+lambda(ep)
+```
+
+
+```{r}
+dea.plot.frontier(input,output,RTS = "fdh+")
+```
+
+
+```{r}
+eq <- dea(input,output,RTS = "fdh")
+eq
+peers(eq)
+lambda(eq)
+```
+
+
+```{r}
+dea.plot.frontier(input,output,RTS = "fdh")
+```
+
